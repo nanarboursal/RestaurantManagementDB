@@ -7,7 +7,7 @@ CREATE TABLE EMPLOYEE(
     Address varchar(50) not null,
     Cell_Phone_Number char(13) not null,
     Email varchar(20) not null,
-    PRIMARY KEY(Employee_ID),
+    PRIMARY KEY(Employee_ID)
 );
 
 CREATE TABLE MENU (
@@ -104,12 +104,14 @@ CREATE TABLE ITEMIZED_RECEIPT(
     CONSTRAINT dish_fk FOREIGN KEY(Dish_ID) REFERENCES MENU(Dish_ID)
 );
 
-insert into employee values("70301", "Nanar", "Boursalian", "Waitress", "123456789", "124 Washington Blvd, San Jose, CA 95123", "(415)444-5555", "nanar.boursalian@sjsu.edu");
+insert into employee values("70301", "Nanar", "Boursalian", "Waitress", "123456789", "124 Washington Blvd, San Jose, CA 95123", "(415)444-5555", "nanar.b@sjsu.edu");
 insert into employee values("17502", "Seema", "Vora", "Hostess", "111222333", "199 Brooklyn St, San Jose, CA 95122", "(415)400-5111", "seema.vora@sjsu.edu");
-insert into employee values("54424", "Surabhi", "Gupta", "Server", "4445556666", "600 Lisa Ave, San Jose, CA 95121", "(428)910-7121", "surabhi.gupta@sjsu.edu");
+insert into employee values("54424", "Surabhi", "Gupta", "Server", "44455566", "600 Lisa Ave, San Jose, CA 95121", "(428)910-7121", "surabhi.g@sjsu.edu");
 insert into employee values("22933", "Aaron", "Jones", "Chef", "888999777", "30 Jane Rd, San Jose, CA 95101", "(409)230-8895", "aaron.jones@sjsu.edu");
 insert into employee values("56735", "John", "Smith", "Sous-Chef", "930472304", "341 Fremont Rd, San Jose, CA 95201", "(449)130-8675", "john.smith@sjsu.edu");
 insert into employee values("12353", "Sarah", "Singh", "Server", "485729456", "994 Pleasonton Blvd, Pleasanton, CA 94536", "(749)993-2295", "sarah.singh@sjsu.edu");
+insert into employee values("78123", "Rohan", "Singh", "Waiter", "905723456", "123 Starlight Blvd, San Francisco, CA 94136", "(415)193-2295", "rohan.singh@sjsu.edu");
+insert into employee values("10293", "Shelly", "Rov", "Chef", "235729956", "1118 Simple Blvd, San Francisco, CA 94136", "(415)193-2210", "shelly.rov@sjsu.edu");
 
 insert into menu values ("39755", "Chicken Parmesan", 15.95);
 insert into menu values ("11518", "Vegetable Stir Fry", 14.90);
@@ -118,6 +120,8 @@ insert into menu values ("66593", "Spaghetti and Meatballs", 14.15);
 insert into menu values ("64642", "Garlic Bread", 2.15);
 insert into menu values ("88646", "Tomato Soup", 11.25);
 insert into menu values ("77352", "Orange Juice", 4.25);
+insert into menu values ("89357", "Pad See Ew", 14.25);
+insert into menu values ("10358", "Cheese Pizza", 24.75);
 
 insert into credit_card values("51188", "1222400087699546", "Cheryl Sherman", "2026-03-01", "Visa", "022");
 insert into credit_card values("24271", "4446899355558123", "Jared Weiss", "2025-04-01", "MasterCard", "009");
@@ -125,6 +129,8 @@ insert into credit_card values("78171", "3333654789906557", "Elise Smith", "2027
 insert into credit_card values("20952", "2223335576598976", "Jane Jackson", "2026-05-01", "Amex", "999");
 insert into credit_card values("12345", "2288735576598976", "Mary Kerry", "2023-05-01", "Visa", "223");
 insert into credit_card values("23474", "1111735576598976", "Ron Potter", "2025-07-01", "Visa", "213");
+insert into credit_card values("12345", "9982335512398944", "Harry Sora", "2027-09-01", "Discover", "122");
+insert into credit_card values("24412", "1111555512398916", "Meg Solder", "2025-08-01", "Amex", "891");
 
 insert into layout values(1, 6, TRUE);
 insert into layout values(2, 4, FALSE);
@@ -138,6 +144,10 @@ insert into layout values(9, 4, TRUE);
 insert into layout values(10, 2, TRUE);
 insert into layout values(11, 2, FALSE);
 insert into layout values(12, 8, TRUE);
+insert into layout values(13, 1, FALSE);
+insert into layout values(14, 3, TRUE);
+insert into layout values(15, 2, FALSE);
+insert into layout values(16, 8, TRUE);
 
 insert into reservation values("96822", "Jerry Lee", 7, "19:00:00", "2022-11-23");
 insert into reservation values("08130", "Harold Jones", 3,"16:00:00", "2022-11-23");
@@ -145,6 +155,9 @@ insert into reservation values("64444",  "Spencer Dave",2, "20:00:00", "2022-11-
 insert into reservation values("58999",  "Alden Shelley", 2,"19:00:00", "2020-11-20");
 insert into reservation values("66464",  "Oscar Wood", 4,"20:00:00", "2020-11-21");
 insert into reservation values("92646",  "Hazel Timothy", 6,"18:00:00", "2020-11-19");
+insert into reservation values("12111",  "Harry Edwards", 2,"20:00:00", "2020-11-21");
+insert into reservation values("55511",  "Rusty Mac", 4,"20:00:00", "2020-11-20");
+insert into reservation values("12311",  "Josh Hetchers", 5,"18:00:00", "2020-11-18");
 
 insert into inventory values("37797", "Broccoli", "floret", 10.5, 19.5);
 insert into inventory values("35608", "Chicken Breast", "piece", 40.0, 90.0);
@@ -153,13 +166,18 @@ insert into inventory values("19471", "Spaghetti Pasta", "packets", 32.0, 40.5);
 insert into inventory values("57243", "Organic Bread", "packets", 38.0, 9.5);
 insert into inventory values("32325", "Tomatoes", "packets", 40.5, 2.55);
 insert into inventory values("63536", "Organic Oranges", "packets", 44.5, 8.55);
+insert into inventory values("55123", "Boiled Egg", "packets", 10.0, 12.5);
+insert into inventory values("11125", "Brussel Sprouts", "packets", 20.5, 10.55);
+insert into inventory values("12336", "Organic Apple", "packets", 24.5, 9.55);
 
 insert into paycheck values("82167", "70301", 224.56, 60.70);
 insert into paycheck values("46210", "17502", 337.90, 30.88);
 insert into paycheck values("46316", "54424", 200.79, 65.35);
 insert into paycheck values("97384", "22933", 380.60, 17.90);
 insert into paycheck values("77575", "56735", 344.60, 10.90);
-insert into paycheck values("77575", "12353", 300.60, 14.90);
+insert into paycheck values("77175", "54424", 300.60, 14.90);
+insert into paycheck values("12575", "17502", 342.10, 11.90);
+insert into paycheck values("11175", "54424", 300.20, 12.90);
 
 insert into timecard values("31706", "70301", 24.88);
 insert into timecard values("66319", "17502", 29.00);
@@ -175,6 +193,10 @@ insert into ingredient values("66593", "19471");
 insert into ingredient values("88646", "32325");
 insert into ingredient values("77352", "48157");
 insert into ingredient values("64642", "57243");
+insert into ingredient values("77352", "48157");
+insert into ingredient values("64642", "32325");
+insert into ingredient values("77352", "32325");
+insert into ingredient values("64642", "19471");
 
 insert into checkdetails values("67136", "70301", null, 1, "51188", 78.95, 6.75, 14.55, 0.00, 100.25);
 insert into checkdetails values("27848", "70301", "08130", 4, null, 35.60, 3.10, 12.40, 51.10, 0.00);

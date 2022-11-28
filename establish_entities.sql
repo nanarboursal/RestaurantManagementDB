@@ -66,15 +66,15 @@ CREATE TABLE TIMECARD(
     Employee_ID char(5) not null,
     Hours decimal(10, 2) not null,
     PRIMARY KEY(Timecard_ID),
-    CONSTRAINT employee_fk FOREIGN KEY(Employee_ID) REFERENCES EMPLOYEE(Employee_ID)
+    CONSTRAINT employee_timecard_fk FOREIGN KEY(Employee_ID) REFERENCES EMPLOYEE(Employee_ID)
 );
 
 CREATE TABLE INGREDIENT(
     Dish_ID char(5) not null,
     Item_ID char(5) not null,
     PRIMARY KEY(Dish_ID, Item_ID),
-    CONSTRAINT dish_fk FOREIGN KEY(Dish_ID) REFERENCES MENU(Dish_ID),
-    CONSTRAINT item_fk FOREIGN KEY(Item_ID) REFERENCES INVENTORY(Item_ID)
+    CONSTRAINT dish_ingredient_fk FOREIGN KEY(Dish_ID) REFERENCES MENU(Dish_ID),
+    CONSTRAINT item_ingredient_fk FOREIGN KEY(Item_ID) REFERENCES INVENTORY(Item_ID)
 );
 
 CREATE TABLE CHECKDETAILS(
@@ -89,10 +89,10 @@ CREATE TABLE CHECKDETAILS(
     Cash_Amount_Paid decimal(10, 2),
     Credit_Amount_Paid decimal(10, 2),
     PRIMARY KEY(Check_ID),
-    CONSTRAINT employee_fk FOREIGN KEY(Server_Employee_ID) REFERENCES EMPLOYEE(Employee_ID),
-    CONSTRAINT reservation_fk FOREIGN KEY(Reservation_ID) REFERENCES RESERVATION(Reservation_ID),
-    CONSTRAINT table_no_fk FOREIGN KEY(Table_Number) REFERENCES LAYOUT(Table_Number),
-    CONSTRAINT credit_card_fk FOREIGN KEY(Credit_Card_ID) REFERENCES CREDIT_CARD(Credit_Card_ID)
+    CONSTRAINT employee_check_fk FOREIGN KEY(Server_Employee_ID) REFERENCES EMPLOYEE(Employee_ID),
+    CONSTRAINT reservation_check_fk FOREIGN KEY(Reservation_ID) REFERENCES RESERVATION(Reservation_ID),
+    CONSTRAINT table_no_check_fk FOREIGN KEY(Table_Number) REFERENCES LAYOUT(Table_Number),
+    CONSTRAINT credit_card_check_fk FOREIGN KEY(Credit_Card_ID) REFERENCES CREDIT_CARD(Credit_Card_ID)
 );
 
 CREATE TABLE ITEMIZED_RECEIPT(
@@ -100,8 +100,8 @@ CREATE TABLE ITEMIZED_RECEIPT(
     Dish_ID char(5) not null,
     Quantity int not null,
     PRIMARY KEY(Check_ID, Dish_ID),
-    CONSTRAINT check_fk FOREIGN KEY(Check_ID) REFERENCES CHECK(Check_ID),
-    CONSTRAINT dish_fk FOREIGN KEY(Dish_ID) REFERENCES MENU(Dish_ID)
+    CONSTRAINT check_receipt_fk FOREIGN KEY(Check_ID) REFERENCES CHECKDETAILS(Check_ID),
+    CONSTRAINT dish_receipt_fk FOREIGN KEY(Dish_ID) REFERENCES MENU(Dish_ID)
 );
 
 insert into employee values("70301", "Nanar", "Boursalian", "Waitress", "123456789", "124 Washington Blvd, San Jose, CA 95123", "(415)444-5555", "nanar.b@sjsu.edu");
@@ -129,7 +129,7 @@ insert into credit_card values("78171", "3333654789906557", "Elise Smith", "2027
 insert into credit_card values("20952", "2223335576598976", "Jane Jackson", "2026-05-01", "Amex", "999");
 insert into credit_card values("12345", "2288735576598976", "Mary Kerry", "2023-05-01", "Visa", "223");
 insert into credit_card values("23474", "1111735576598976", "Ron Potter", "2025-07-01", "Visa", "213");
-insert into credit_card values("12345", "9982335512398944", "Harry Sora", "2027-09-01", "Discover", "122");
+insert into credit_card values("12346", "9982335512398944", "Harry Sora", "2027-09-01", "Discover", "122");
 insert into credit_card values("24412", "1111555512398916", "Meg Solder", "2025-08-01", "Amex", "891");
 
 insert into layout values(1, 6, TRUE);
@@ -193,7 +193,6 @@ insert into ingredient values("66593", "19471");
 insert into ingredient values("88646", "32325");
 insert into ingredient values("77352", "48157");
 insert into ingredient values("64642", "57243");
-insert into ingredient values("77352", "48157");
 insert into ingredient values("64642", "32325");
 insert into ingredient values("77352", "32325");
 insert into ingredient values("64642", "19471");
@@ -205,8 +204,8 @@ insert into checkdetails values("69474", "54424", null, 9, "20952", 57.89, 7.85,
 insert into checkdetails values("55353", "12353", null, 9, "12345", 35.89, 9.85, 13.36, 0.00, 79.10);
 
 insert into itemized_receipt values("67136", "39755", 2);
-insert into itemized_receipt values("27848" "83738", 4);
+insert into itemized_receipt values("27848", "83738", 4);
 insert into itemized_receipt values("33947", "11518", 1);
-insert into itemized_receipt values("33947", "19471", 2);
+insert into itemized_receipt values("33947", "66593", 2);
 insert into itemized_receipt values("69474", "11518", 3);
 insert into itemized_receipt values("55353", "77352", 2);

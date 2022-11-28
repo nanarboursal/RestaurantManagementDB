@@ -1,9 +1,8 @@
 -- BASIC
-
 -- Find the tables that are available that can seat more than 5.
 select Table_Number, No_of_Seats from layout where No_of_Seats > 5 and Availability=TRUE;
 -- Find the items that are running low and the amounts needed to be purchased from inventory.
-select Item_Name, Item_Needed_Quantity-Item_Current_Quantity as Purchase_Amount, Unit from inventory where Item_Needed_Quantity>Item_Current_Quantity;
+select Item_Name from inventory where Item_Needed_Quantity>Item_Current_Quantity;
 
 -- INTERMEDIATE
 -- Find the employees who have served more than 1 table

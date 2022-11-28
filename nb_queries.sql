@@ -8,8 +8,8 @@ select Item_Name from inventory where Item_Needed_Quantity>Item_Current_Quantity
 -- Find the employees who have served more than 1 table
 select e.First_Name, e.Last_Name from employee as e where e.Employee_ID = (select Employee_ID from checkdetails as c where count(*) > 1 and e.Employee_ID=c.Employee_ID);
 
--- Find which dish was served by which employee
-select g.First_Name, g.Last_Name, g.Dish_Name from (select * from (select * from checkdetails join itemized_receipt on Check_ID) join employee on Employee_ID) as g;
+-- Find which dish was served by which employee to which table
+select g.First_Name, g.Last_Name, g.Dish_Name, g.Table_Number from (select * from (select * from checkdetails join itemized_receipt on Check_ID) join employee on Employee_ID) as g;
 
 -- ADVANCED
 -- Find how many hours each employee works ordered by descending amount of hours.
